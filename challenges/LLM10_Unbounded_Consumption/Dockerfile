@@ -1,6 +1,6 @@
 # Dockerfile File
 # Use an official Python image
-FROM python:3.10-slim
+FROM python:3.13-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
