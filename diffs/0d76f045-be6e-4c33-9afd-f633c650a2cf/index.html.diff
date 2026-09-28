@@ -14,14 +14,18 @@
              if (userInput.value.trim() === "") return;
  
              // Show typing animation
--            const typingAnimation = document.getElementById("typing");
-+const userMessage = `<pre class='message user-message'>${escapeHTML(userInput.value)}</pre>`;
-+function escapeHTML(str) { return str.replace(/[&<>'"]/g, function(tag) { const charsToReplace = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }; return charsToReplace[tag] || tag; }); }
+             const typingAnimation = document.getElementById("typing");
              typingAnimation.style.display = 'block';
  
              // Append user message to chat box
-             const userMessage = `<pre class='message user-message'>${userInput.value}</pre>`;
-             chatBox.innerHTML += userMessage;
+-            const userMessage = `<pre class='message user-message'>${userInput.value}</pre>`;
+-            chatBox.innerHTML += userMessage;
++            const userMessage = `<pre class='message user-message'></pre>`;
++            const textNode = document.createTextNode(userInput.value);
++            const preElement = document.createElement('pre');
++            preElement.className = 'message user-message';
++            preElement.appendChild(textNode);
++            chatBox.appendChild(preElement);
  
              // Send request to Flask API
              fetch("/llm06_2025_chat", {
