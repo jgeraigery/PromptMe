@@ -81,13 +81,12 @@
              if (userInput.value.trim() === "") return;
  
              // Show typing animation
--            const typingAnimation = document.getElementById("typing");
-+const userMessage = `<pre class='message user-message'>${encodeHTML(userInput.value)}</pre>`;
-+function encodeHTML(str) { return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+             const typingAnimation = document.getElementById("typing");
              typingAnimation.style.display = 'block';
  
              // Append user message to chat box
-             const userMessage = `<pre class='message user-message'>${userInput.value}</pre>`;
+-            const userMessage = `<pre class='message user-message'>${userInput.value}</pre>`;
++            const userMessage = `<pre class='message user-message'>${document.createTextNode(userInput.value).textContent}</pre>`;
              chatBox.innerHTML += userMessage;
  
              // Send request to Flask API
