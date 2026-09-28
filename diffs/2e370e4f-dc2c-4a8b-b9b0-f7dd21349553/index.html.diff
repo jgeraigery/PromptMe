@@ -11,12 +11,12 @@
              const chatBox = document.getElementById("chat-box");
  
              if (userInput.trim() === "") return;
--
-+const userMessage = `<pre class='message user-message'>${encodeURIComponent(userInput)}</pre>`;
+ 
              const typingAnimation = document.getElementById("typing");
              typingAnimation.style.display = 'block';
  
-             const userMessage = `<pre class='message user-message'>${userInput}</pre>`;
+-            const userMessage = `<pre class='message user-message'>${userInput}</pre>`;
++            const userMessage = `<pre class='message user-message'>${document.createTextNode(userInput).textContent}</pre>`;
              chatBox.innerHTML += userMessage;
  
              fetch("/ask", {
